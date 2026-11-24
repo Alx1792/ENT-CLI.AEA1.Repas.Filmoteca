@@ -16,3 +16,6 @@
 .no-disponible {
   opacity: 0.5;
 }
+.destacada {
+  border: 2px solid #ffc107;
+}

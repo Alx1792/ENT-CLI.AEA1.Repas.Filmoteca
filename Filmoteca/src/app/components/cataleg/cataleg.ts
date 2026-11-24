@@ -10,6 +10,7 @@ import { Pelicules } from '../../pelicula';
 })
 export class Cataleg {
   pelicules: Pellicula[] = Pelicules;
+  cerca ='';
 
   get totalP(): number{
     return this.pelicules.length;
@@ -30,7 +31,7 @@ export class Cataleg {
     }
     let hores = Math.floor(minuts/60);
     let resta= minuts % 60;
-    return hores+" h " + resta + " min en total"
+    return hores+" h " + resta + " min"
 
   }
   get valoracioMitjana(): string{
@@ -41,6 +42,22 @@ export class Cataleg {
       let mitjana = suma/this.pelicules.length;
       return mitjana.toFixed(1);
   }
+
+  llogar(p: Pellicula): void {
+  p.disponible = false;
+}
+
+retornar(p: Pellicula): void {
+  p.disponible = true;
+}
+onCerca(event: Event): void {
+  this.cerca = (event.target as HTMLInputElement).value;
+}
+
+get peliculesVisibles(): Pellicula[] {
+  const text = this.cerca.trim().toLowerCase();
+  return this.pelicules.filter(p => p.titol.toLowerCase().includes(text));
+}
 
 
 
