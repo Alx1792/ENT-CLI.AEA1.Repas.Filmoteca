@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Pellicula } from '../../interficies/pellicula';
 import { Pelicules } from '../../pelicula';
+import { FitxaPellicula } from '../fitxa-pellicula/fitxa-pellicula';
 
 @Component({
   selector: 'app-cataleg',
-  imports: [],
+  imports: [FitxaPellicula],
   templateUrl: './cataleg.html',
   styleUrl: './cataleg.css',
 })

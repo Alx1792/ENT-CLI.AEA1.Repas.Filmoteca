@@ -1,0 +1,31 @@
+<div
+  class="targeta"
+  [class.no-disponible]="!pellicula.disponible"
+  [class.destacada]="pellicula.valoracio >= 8.5"
+>
+  <p>#{{ ordre }}</p>
+  <img
+    [src]="pellicula.cartellUrl || 'https://picsum.photos/150/220'"
+    [alt]="pellicula.titol"
+    width="150"
+  />
+  <h3>{{ pellicula.titol }}</h3>
+  <p>{{ pellicula.director }}</p>
+  <p>{{ pellicula.genere }} · {{ pellicula.durada }} min</p>
+  <p>
+    Valoració:
+    <strong [style.color]="pellicula.valoracio >= 8 ? 'green' : 'red'">{{
+      pellicula.valoracio
+    }}</strong>
+  </p>
+  @if (pellicula.disponible) {
+    <p>Disponible</p>
+  } @else {
+    <p>Llogada</p>
+  }
+  <p>{{ pellicula.any }}</p>
+  <button (click)="clickLlogar()" [disabled]="!pellicula.disponible">Llogar</button>
+  @if (!pellicula.disponible) {
+    <button (click)="clickRetornar()">Retornar</button>
+  }
+</div>

@@ -1,0 +1,19 @@
+.targeta {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px;
+  width: 220px;
+}
+
+.targeta img {
+  width: 100%;
+}
+
+.no-disponible {
+  opacity: 0.5;
+}
+
+.destacada {
+  border: 2px solid #ffc107;
+}

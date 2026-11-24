@@ -4,38 +4,13 @@
 <p>Valoració mitjana: {{ valoracioMitjana }}</p>
 <input type="search" placeholder="Cerca per títol..." (input)="onCerca($event)">
 <div class="llista">
-  @for (pelicula of pelicules; track pelicula.id; let i = $index) {
-    <div
-      class="targeta"
-      [class.no-disponible]="!pelicula.disponible"
-      [class.destacada]="pelicula.valoracio >= 8.5"
-    >
-      <p>#{{ i + 1 }}</p>
-      <img
-        [src]="pelicula.cartellUrl || 'https://picsum.photos/150/220'"
-        [alt]="pelicula.titol"
-        width="150"
-      />
-      <h3>{{ pelicula.titol }}</h3>
-      <p>{{ pelicula.director }}</p>
-      <p>{{ pelicula.genere }} · {{ pelicula.durada }} min</p>
-      <p>
-        Valoració:
-        <strong [style.color]="pelicula.valoracio >= 8 ? 'green' : 'red'">{{
-          pelicula.valoracio
-        }}</strong>
-      </p>
-      @if (pelicula.disponible) {
-        <p>Disponible</p>
-      } @else {
-        <p>Llogada</p>
-      }
-      <p>{{ pelicula.any }}</p>
-      <button (click)="llogar(pelicula)" [disabled]="!pelicula.disponible">Llogar</button>
-      @if (!pelicula.disponible) {
-        <button (click)="retornar(pelicula)">Retornar</button>
-      }
-    </div>
+  @for (pelicula of peliculesVisibles; track pelicula.id; let i = $index) {
+    <app-fitxa-pellicula
+      [pellicula]="pelicula"
+      [ordre]="i + 1"
+      (llogar)="llogar($event)"
+      (retornar)="retornar($event)">
+    </app-fitxa-pellicula>
   } @empty {
     <p>No hi ha cap pel·lícula amb aquest títol.</p>
   }
