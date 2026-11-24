@@ -3,6 +3,15 @@
 <p>Durada: {{ duradaTotal }}</p>
 <p>Valoració mitjana: {{ valoracioMitjana }}</p>
 <input type="search" placeholder="Cerca per títol..." (input)="onCerca($event)">
+<label>
+  Ordena per:
+  <select (change)="onOrdena($event)">
+    <option value="titol">Títol</option>
+    <option value="any">Any</option>
+    <option value="valoracio">Valoració (de més a menys)</option>
+    <option value="durada">Durada</option>
+  </select>
+</label>
 <div class="llista">
   @for (pelicula of peliculesVisibles; track pelicula.id; let i = $index) {
     <app-fitxa-pellicula

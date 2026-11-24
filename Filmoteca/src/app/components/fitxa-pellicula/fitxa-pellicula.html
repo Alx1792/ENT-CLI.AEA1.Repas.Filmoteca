@@ -11,7 +11,10 @@
   />
   <h3>{{ pellicula.titol }}</h3>
   <p>{{ pellicula.director }}</p>
-  <p>{{ pellicula.genere }} · {{ pellicula.durada }} min</p>
+  <p>
+    <app-etiqueta-genere [genere]="pellicula.genere"></app-etiqueta-genere>
+    · {{ pellicula.durada }} min
+  </p>
   <p>
     Valoració:
     <strong [style.color]="pellicula.valoracio >= 8 ? 'green' : 'red'">{{

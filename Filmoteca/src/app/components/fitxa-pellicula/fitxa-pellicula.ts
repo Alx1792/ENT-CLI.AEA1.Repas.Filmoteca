@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pellicula } from '../../interficies/pellicula';
+import { EtiquetaGenere } from '../etiqueta-genere/etiqueta-genere';
 
 @Component({
   selector: 'app-fitxa-pellicula',
-  imports: [],
+  imports: [EtiquetaGenere],
   templateUrl: './fitxa-pellicula.html',
   styleUrl: './fitxa-pellicula.css',
 })

@@ -12,6 +12,7 @@ import { FitxaPellicula } from '../fitxa-pellicula/fitxa-pellicula';
 export class Cataleg {
   pelicules: Pellicula[] = Pelicules;
   cerca ='';
+  ordre = 'titol';
 
   get totalP(): number{
     return this.pelicules.length;
@@ -55,9 +56,24 @@ onCerca(event: Event): void {
   this.cerca = (event.target as HTMLInputElement).value;
 }
 
+onOrdena(event: Event): void {
+  this.ordre = (event.target as HTMLSelectElement).value;
+}
+
 get peliculesVisibles(): Pellicula[] {
   const text = this.cerca.trim().toLowerCase();
-  return this.pelicules.filter(p => p.titol.toLowerCase().includes(text));
+  const llista = this.pelicules.filter(p => p.titol.toLowerCase().includes(text));
+  // filter() ja crea una còpia, així que ordenar no toca l'array original
+  switch (this.ordre) {
+    case 'any':
+      return llista.sort((a, b) => a.any - b.any);
+    case 'valoracio':
+      return llista.sort((a, b) => b.valoracio - a.valoracio);
+    case 'durada':
+      return llista.sort((a, b) => a.durada - b.durada);
+    default:
+      return llista.sort((a, b) => a.titol.localeCompare(b.titol));
+  }
 }
 
 
