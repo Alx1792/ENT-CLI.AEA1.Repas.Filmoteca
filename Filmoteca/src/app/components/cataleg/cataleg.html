@@ -1,1 +1,29 @@
-<p>cataleg works!</p>
+<p>Total: {{ totalP}}</p>
+<p> Disponibles: {{ disponibles }}</p>
+<p>Durada: {{duradaTotal}}</p>
+<p>Valoració mitjana: {{valoracioMitjana}}</p>
+
+
+<div class="llista">
+@for (pelicula of pelicules; track pelicula.id) {
+  <div class="targeta" [class.no-disponible]="!pelicula.disponible">
+    @if (pelicula.cartellUrl) {
+  <img [src]="pelicula.cartellUrl" [alt]="pelicula.titol" width="150">
+} @else {
+  <p>Sense cartell</p>
+}
+    <h3>{{ pelicula.titol }}</h3>
+    <p>{{ pelicula.director }}</p>
+    <p>{{ pelicula.genere }} · {{ pelicula.durada }} min</p>
+    <p>Valoració: {{ pelicula.valoracio }}</p>
+    @if (pelicula.disponible) {
+  <p>Disponible</p>
+} @else {
+  <p>No disponible</p>
+}
+    <p> {{ pelicula.any }}</p>
+  </div>
+} @empty {
+  <p>No hi ha pel·lícules.</p>
+}
+</div>
